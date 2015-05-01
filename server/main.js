@@ -11,7 +11,10 @@ var webSocketServer = new WebSocketServer({
 
 webSocketServer.on('request', function (req) {
   var connection = req.accept('echo-protocol', req.origin)
-  if(!connection) return false
+  if(!connection) {
+    console.log("Connection failed")
+    return false
+  }
   setInterval(createRandSender(connection), 1000)
 })
 
